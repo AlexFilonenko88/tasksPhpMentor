@@ -9,7 +9,7 @@
     <title>Калькулятор</title>
 </head>
 <body>
-    <form action="handler_calculator.php" method="post">
+    <form action="" method="get">
         <input type="text" name="number1" placeholder="Первое число">
         <select name="operation">
             <option value="plus">+</option>
@@ -20,5 +20,51 @@
         <input type="text" name="number2" placeholder="Второе число">
         <input type="submit" name="submit" value="Ответ">
     </form>
+
+    <?php
+
+    if (isset($_GET['submit'])) {
+        $number1 = $_GET['number1'];
+        $number2 = $_GET['number2'];
+        $operation = $_GET['operation'];
+    };
+
+
+    if (!isset($number1) && !isset($number2)) {
+        $error_result = 'Не все поля заполнены';
+    } else {
+        if (!is_numeric($number1) || !is_numeric($number2)) {
+            $error_result = 'Операнды должны быть числами';
+        } else {
+            switch ($operation) {
+                case 'plus':
+                    $result = $number1 + $number2;
+                    break;
+                case 'minus':
+                    $result = $number1 - $number2;
+                    break;
+                case 'multiply';
+                    $result = $number1 * $number2;
+                    break;
+                case 'divide':
+                    if ($number2 == 0) {
+                        $error_result = 'На ноль делить нельзя';
+                    } else {
+                        $result = $number1 / $number2;
+                        break;
+                    }
+            }
+        }
+    };
+
+
+    if (isset($error_result)) {
+        echo "Ошибка: $error_result";
+    } else {
+        echo "Ответ: $result";
+    };
+
+    ?>
+
 </body>
 </html>
