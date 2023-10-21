@@ -62,6 +62,15 @@ if (isset($_GET['submit'])) {
 }
 
 ?>
+if (isset($_GET['number1']) || isset($_GET['number2']) || isset($_GET['operation'])) {
+echo $formula = 'Ответ' . ' ';
+echo $number1 . ' ';
+echo $operation . ' ';
+echo $number2 . ' ';
+echo '= ' . $result ;
+};
+
+<!--   <title>--><?php //= htmlspecialchars($number1) . htmlspecialchars($operation) . htmlspecialchars($number2) . '=' . htmlspecialchars($result) ?><!--</title>-->
 
 </body>
 </html>
