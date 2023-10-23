@@ -9,7 +9,7 @@ if (isset($_GET['submit'])) {
         $number1 = $_GET['number1'];
         $number2 = $_GET['number2'];
         $operation = $_GET['operation'];
-    };
+    }
 
     if (!is_numeric($number1) || !is_numeric($number2)) {
         $error_result = 'Операнды должны быть числами';
@@ -40,17 +40,14 @@ if (isset($_GET['submit'])) {
         }
     }
 
-    $resultStr = "Ответ: $number1 $operation $number2 = $result";
+    setcookie('result', $result);
 
-    if (isset($error_result)) {
-        echo "Ошибка: $error_result";
-    } else {
-        echo htmlspecialchars($resultStr);
-    };
+
 }
 
-?>
 
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -65,16 +62,30 @@ if (isset($_GET['submit'])) {
 </head>
 <body>
 
+<?php
+$resultStr = "Ответ: $number1 $operation $number2 = $result";
+
+if (isset($error_result)) {
+    echo "Ошибка: $error_result";
+} else {
+    echo htmlspecialchars($resultStr);
+}
+
+echo '<br>';
+echo "cookie " . $_COOKIE['result'] ?? null;
+
+?>
+
 <form action="" method="get">
-    <input type="text" name="number1" placeholder="Первое число"  value="<?=$result?>">
+    <input type="text" name="number1" placeholder="Первое число"  value="<?= $result ?>">
     <select name="operation">
-        <?
+        <?php
         $operation = $_GET['operation'];
         ?>
-        <option <?php if($operation == 'plus') { ?> selected="true" <?php };?> value="plus">+</option>
-        <option <?php if($operation == 'minus') { ?> selected="true" <?php };?> value="minus">-</option>
-        <option <?php if($operation == 'multiply') { ?> selected="true" <?php };?> value="multiply">*</option>
-        <option <?php if($operation == 'divide') { ?> selected="true" <?php };?> value="divide">/</option>
+        <option <?php if($operation == 'plus') { ?> selected="true" <?php }?> value="plus">+</option>
+        <option <?php if($operation == 'minus') { ?> selected="true" <?php }?> value="minus">-</option>
+        <option <?php if($operation == 'multiply') { ?> selected="true" <?php }?> value="multiply">*</option>
+        <option <?php if($operation == 'divide') { ?> selected="true" <?php }?> value="divide">/</option>
     </select>
     <input type="text" name="number2" placeholder="Второе число">
     <input type="submit" name="submit" value="Ответ">
