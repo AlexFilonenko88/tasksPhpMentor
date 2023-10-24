@@ -40,12 +40,11 @@ if (isset($_GET['submit'])) {
         }
     }
 
+    setcookie('number1', $number1);
+    setcookie('number2', $number2);
+    setcookie('operation', $operation);
     setcookie('result', $result);
-
-
 }
-
-
 
 ?>
 <!doctype html>
@@ -63,7 +62,10 @@ if (isset($_GET['submit'])) {
 <body>
 
 <?php
-$resultStr = "Ответ: $number1 $operation $number2 = $result";
+$resultStr = "";
+if(isset($number1) && isset($number2) && isset($operation)) {
+    $resultStr = "Ответ: $number1 $operation $number2 = $result";
+}
 
 if (isset($error_result)) {
     echo "Ошибка: $error_result";
@@ -72,7 +74,10 @@ if (isset($error_result)) {
 }
 
 echo '<br>';
-echo "cookie " . $_COOKIE['result'] ?? null;
+
+if(isset($_COOKIE)) {
+    echo htmlspecialchars("Прерыдущий ответ: " . $_COOKIE['number1'] . ' ' . $_COOKIE['operation'] . ' ' . $_COOKIE['number2'] . ' ' . "=" . ' ' . $_COOKIE['result']);
+}
 
 ?>
 
