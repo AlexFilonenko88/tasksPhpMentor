@@ -62,10 +62,20 @@ if (isset($_GET['submit'])) {
 <body>
 
 <?php
+$arrRes = [];
+
 $resultStr = "";
+setcookie('resultStr', $resultStr);
 if(isset($number1) && isset($number2) && isset($operation)) {
     $resultStr = "Ответ: $number1 $operation $number2 = $result";
 }
+
+$str = $_COOKIE['number1'] . ' ' . $_COOKIE['operation'] . ' ' . $_COOKIE['number2'] . ' ' . "=" . ' ' . $_COOKIE['result'];
+array_push($arrRes, $str);
+$json_encode_res = json_encode($arrRes);
+var_dump($arrRes);
+
+setcookie('$json_encode_res', $json_encode_res);
 
 if (isset($error_result)) {
     echo "Ошибка: $error_result";
