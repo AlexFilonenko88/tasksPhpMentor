@@ -70,12 +70,19 @@ if(isset($number1) && isset($number2) && isset($operation)) {
     $resultStr = "Ответ: $number1 $operation $number2 = $result";
 }
 
-$str = $_COOKIE['number1'] . ' ' . $_COOKIE['operation'] . ' ' . $_COOKIE['number2'] . ' ' . "=" . ' ' . $_COOKIE['result'];
-array_push($arrRes, $str);
+//array_push($arrRes, $resultStr);
+$arrRes[]=$resultStr;
 $json_encode_res = json_encode($arrRes);
-var_dump($arrRes);
+//var_dump($json_encode_res);
+//echo '<br>';
 
-setcookie('$json_encode_res', $json_encode_res);
+setcookie('json_encode_res', $json_encode_res);
+
+echo json_decode($_COOKIE['json_encode_res']);
+//print_r(json_decode($_COOKIE['json_encode_res']));
+//echo '<br>';
+
+
 
 if (isset($error_result)) {
     echo "Ошибка: $error_result";
