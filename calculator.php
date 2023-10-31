@@ -70,20 +70,6 @@ if(isset($number1) && isset($number2) && isset($operation)) {
     $resultStr = "Ответ: $number1 $operation $number2 = $result";
 }
 
-//array_push($arrRes, $resultStr);
-$arrRes[]=$resultStr;
-$json_encode_res = json_encode($arrRes);
-//var_dump($json_encode_res);
-//echo '<br>';
-
-setcookie('json_encode_res', $json_encode_res);
-
-echo json_decode($_COOKIE['json_encode_res']);
-//print_r(json_decode($_COOKIE['json_encode_res']));
-//echo '<br>';
-
-
-
 if (isset($error_result)) {
     echo "Ошибка: $error_result";
 } else {
@@ -92,8 +78,24 @@ if (isset($error_result)) {
 
 echo '<br>';
 
+$previous_res = '';
+
 if(isset($_COOKIE)) {
-    echo htmlspecialchars("Прерыдущий ответ: " . $_COOKIE['number1'] . ' ' . $_COOKIE['operation'] . ' ' . $_COOKIE['number2'] . ' ' . "=" . ' ' . $_COOKIE['result']);
+    echo $previous_res = htmlspecialchars("Прерыдущий ответ: " . $_COOKIE['number1'] . ' ' . $_COOKIE['operation'] . ' ' . $_COOKIE['number2'] . ' ' . "=" . ' ' . $_COOKIE['result']);
+}
+
+$arrRes[]=$previous_res;
+$json_encode_res = json_encode($arrRes);
+//var_dump($json_encode_res);
+//echo '<br>';
+
+setcookie('json_encode_res', $json_encode_res);
+
+echo '<br>';
+$rrr = json_decode($_COOKIE['json_encode_res']);
+//print_r($rrr);
+foreach ($rrr as $value){
+    echo $value;
 }
 
 ?>
