@@ -94,9 +94,9 @@ setcookie('json_encode_res', $json_encode_res);
 echo '<br>';
 $rrr = json_decode($_COOKIE['json_encode_res']);
 //print_r($rrr);
-foreach ($rrr as $value){
-    echo $value;
-}
+//foreach ($rrr as $value){
+//    echo $value;
+//}
 
 ?>
 

@@ -8,14 +8,24 @@
     <title>Document</title>
 </head>
 <body>
+<?php
+$num = $_GET['num'];
+$op = $_GET['op'];
+
+setcookie('num', $num);
+setcookie('op', $op);
+
+//var_dump($op);
+
+?>
 <table>
     <tr>
         <td>
-            <form>
+            <form method="GET">
                 <table>
                     <tr>
                         <td colspan="4">
-                            <input type="text" placeholder="введите число">
+                            <input type="text" placeholder="введите число" readonly="true" value="<?= $num . $op?>">
                         </td>
                     </tr>
 
@@ -50,6 +60,9 @@
         </td>
     </tr>
 </table>
+<?php
 
+
+?>
 </body>
 </html>
