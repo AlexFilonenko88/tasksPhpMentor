@@ -15,26 +15,24 @@ if (isset($_POST['text'])) {
 
 $filename = __DIR__ . '\text.txt';
 
-//1
-//$fo = fopen($filename, 'c');
-//fseek($fo, 0, SEEK_END);
-//fwrite($fo, PHP_EOL . $text);
-//fclose($fo);
-
 if (file_exists($filename)) {
     $text1 = file_get_contents($filename);
     file_put_contents($filename, $text . PHP_EOL . $text1);
 
     echo htmlspecialchars($text1);
 } else {
-    echo 'Необходимо создать файл';
+    echo '';
 }
+
+echo '<br>';
+var_dump($_POST['text1']);
 
 ?>
 <body>
 <form method="POST">
     <p><input type="text" name="text" value="<?= htmlspecialchars($text1) ?>"></p>
     <input type="submit" value="Отправить">
+    <p><textarea name="text1" rows="10" cols="45"><?= htmlspecialchars($text1)?> </textarea></p>
 </form>
 </body>
 </html>
