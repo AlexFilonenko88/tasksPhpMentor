@@ -10,13 +10,16 @@
 <?php
 $filename = __DIR__ . '\text.txt';
 
-if(isset($_POST['text1'])){
-    file_put_contents($filename, $_POST['text1']);
+if(file_exists($filename)){
+    if(isset($_POST['text1'])){
+        file_put_contents($filename, $_POST['text1']);
+        $file = file_get_contents($filename);
+    }
 }
 ?>
 <body>
 <form method="POST">
-    <p><textarea name="text1" rows="10" cols="45"><?= htmlspecialchars(isset($_POST['text1']) ? $_POST['text1'] : '') ?> </textarea></p>
+    <p><textarea name="text1" rows="10" cols="45"><?= htmlspecialchars(isset($file)?$file:'') ?> </textarea></p>
     <input type="submit" value="Отправить">
 </form>
 </body>
