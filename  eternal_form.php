@@ -8,24 +8,16 @@
     <title>Document</title>
 </head>
 <?php
-$text = $_POST['text'] ?? "";
-//if (isset($_POST['text'])) {
-//    $text = $_POST['text'];
-//}
-
 $filename = __DIR__ . '\text.txt';
 
-if (file_exists($filename)) {
-    $text1 = file_get_contents($filename);
-    file_put_contents($filename, $text . PHP_EOL . $text1);
+if(isset($_POST['text1'])){
+    file_put_contents($filename, $_POST['text1']);
 }
-
 ?>
 <body>
 <form method="POST">
-    <p><input type="text" name="text" value="Введите текст"></p>
+    <p><textarea name="text1" rows="10" cols="45"><?= htmlspecialchars(isset($_POST['text1']) ? $_POST['text1'] : '') ?> </textarea></p>
     <input type="submit" value="Отправить">
-    <p><textarea name="text1" rows="10" cols="45"><?= htmlspecialchars($text1) ?> </textarea></p>
 </form>
 </body>
 </html>
