@@ -10,10 +10,11 @@
 <?php
 $filename = __DIR__ . '\text.txt';
 
+$file='';
 if(file_exists($filename)){
         $file = file_get_contents($filename);
-        file_put_contents($filename, $_POST['text']);
 }
+file_put_contents($filename, $_POST['text']);
 ?>
 <body>
 <form method="POST">
