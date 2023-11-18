@@ -310,7 +310,7 @@ foreach ($numbers as $i => $number) {
         $start1 = $i;
         break;
     }
-    if ($start1 > $i && $number > 0) {
+    if ($start1 > $i && ($number + 1) > 0) {
         $start2 = $i;
     }
 }
@@ -342,7 +342,7 @@ $res5 = 0;
 
 foreach ($arr as $arr1) {
     foreach ($arr1 as $value) {
-        if($arr1[0] < $max && $arr1[1] < $max && $arr1[2] < $max && $arr1[3] < $max && $arr1[4] < $max && $arr1[5] < $max){
+        if ($arr1[0] < $max && $arr1[1] < $max && $arr1[2] < $max && $arr1[3] < $max && $arr1[4] < $max && $arr1[5] < $max) {
             $res = $arr1[0];
             $res1 = $arr1[1];
             $res2 = $arr1[2];
@@ -358,11 +358,10 @@ array_push($arrRes, $res, $res1, $res2, $res3, $res4, $res5);
 print_r($arrRes);
 
 $endRes = 0;
-foreach ($arrRes as $number){
-    if($number > $min){
+foreach ($arrRes as $number) {
+    if ($number > $min) {
         $endRes = $number;
     }
 }
 
 echo $endRes;
-
