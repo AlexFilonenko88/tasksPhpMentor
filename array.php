@@ -264,104 +264,63 @@ for ($i = count($numbers) - 1; $i >= 0; $i--) {
 //12.	Дан одномерный массив из 1000 элементов, состоящий из случайных целых чисел в диапазоне от -5 до 8.
 //Найти сумму элементов участка массива, начиная с первого положительного и кончая вторым положительным элементом.
 
-$numbers = [11, -11.1, -1, 1, 2, 3, 4, 5, 6, 7, 8, 0, -11.2, -12, -12.3, -12.4, 13, 13.3, 14, 14.1, 15, 16, 17, -18, -19, 20, 21, 22, 50];
+$numbers = [-5, -4, -3, -2, -1, 0, 5, -2, 3, 4, 5, 6, 7, 8];
 
-$sumArr = [];
+$count = 0;
+$sum = 0;
 
-foreach ($numbers as $number) {
-    if ($number > -5 && $number < 8) {
-        $sumArr[] = $number;
-    }
-}
-
-//$sum = 0;
-foreach ($sumArr as $i => $res) {
-    if ($res > 0) {
-        $sum += $sumArr[0] + $sumArr[0 + 1];
-    }
-}
-//echo $sum;
-//
-//print_r($sumArr);
-
-
-//$numbers = [11, -11.1, -1, 1, 2, 3, 4, 5, 6, 7, 8, 0, -11.2, -12, -12.3, -12.4, 13, 13.3, 14, 14.1, 15, 16, 17, -18, -19, 20, 21, 22, 50];
-$numbers = [-1, -2, -3, -4, 0, 1, 2, 3];
-
-$flag = false;
-//$sum = 0;
-foreach ($numbers as $number) {
-    if ($flag) {
-        $flag = true;
-    }
-    if ($number > 0) {
-        $sum += $number;
-    }
-}
-
-//echo $sum;
-
-$numbers = [-5, -4, -3, -2, -1, 0, 1, -2, 3, 4, 5, 6, 7, 8];
-
-$start1 = 0;
-$start2 = 0;
 foreach ($numbers as $i => $number) {
     if ($number > 0) {
-        $start1 = $i;
-        break;
+        $count++;
     }
-    if ($start1 > $i && ($number + 1) > 0) {
-        $start2 = $i;
+    if ($count >= 1 && $count <= 2) {
+        $sum += $number;
+    }
+    if ($count > 2) {
+        break;
     }
 }
 
-//echo "$start1, $start2";
+//echo $sum;
 
 // Дан двумерный массив из 5 строк и 6 столбцов.
 // Определить для каждого столбца максимальный элемент.
 // Среди этих элементов найти минимальный
 
 $arr = [
-    [1, 2, 3, 4, 5, 6],
-    [3, 5, 56, 7, 6, 8],
-    [4, 5, 6, 7, 8, 10],
-    [67, 45, 76, 23, 56, 10],
-    [433, 56, 789, 789, 45, 10]
+    [-1, -2, -4, -7, -4, -4],
+    [-3, 5, 56, 7, 6, 8],
+    [-4, 5, 6, 7, 8, 10],
+    [-433, 45, 10000, 23, 56, 10],
+    [-67, 56, 78, 789, 45, 9]
 ];
 
-$max = +INF;
-$min = -INF;
+//1
 
-$arrRes = [];
+$max = [-INF, -INF, -INF, -INF, -INF];
 
-$res = 0;
-$res1 = 0;
-$res3 = 0;
-$res4 = 0;
-$res5 = 0;
-
-foreach ($arr as $arr1) {
-    foreach ($arr1 as $value) {
-        if ($arr1[0] < $max && $arr1[1] < $max && $arr1[2] < $max && $arr1[3] < $max && $arr1[4] < $max && $arr1[5] < $max) {
-            $res = $arr1[0];
-            $res1 = $arr1[1];
-            $res2 = $arr1[2];
-            $res3 = $arr1[3];
-            $res4 = $arr1[4];
-            $res5 = $arr1[5];
+foreach ($arr as  $valueArr){
+    foreach ($valueArr as $i => $number) {
+        if($valueArr[$i] > $max[$i]){
+            $max[$i] = $number;
         }
     }
 }
 
-array_push($arrRes, $res, $res1, $res2, $res3, $res4, $res5);
+echo json_encode($max);
 
-print_r($arrRes);
+//2
 
-$endRes = 0;
-foreach ($arrRes as $number) {
-    if ($number > $min) {
-        $endRes = $number;
+$min = -INF;
+
+foreach ($max as $number){
+    if($number > $min){
+        $min = $number;
     }
 }
 
-echo $endRes;
+echo $min;
+
+
+
+
