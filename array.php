@@ -1,4 +1,8 @@
 <?php
+
+error_reporting(E_ALL);
+
+
 //2. ЗАДАЧИ НА ОДНОМЕРНЫЙ МАССИВ
 //1.  Дано N действительных случайных чисел в диапазоне от -100 до 100. Найти минимальное положительное число и максимальное отрицательное число.
 
@@ -292,12 +296,12 @@ $arr = [
     [-3, 5, 56, 7, 6, 8],
     [-4, 5, 6, 7, 8, 10],
     [-433, 45, 10000, 23, 56, 10],
-    [-67, 56, 78, 789, 45, 9]
+    [-67, 56, 78, 789, 45, 9],
 ];
 
 //1
 
-$max = [-INF, -INF, -INF, -INF, -INF];
+$max = [-INF, -INF, -INF, -INF, -INF, -INF];
 
 foreach ($arr as  $valueArr){
     foreach ($valueArr as $i => $number) {
@@ -311,16 +315,15 @@ echo json_encode($max);
 
 //2
 
-$min = -INF;
+$min = +INF;
 
 foreach ($max as $number){
-    if($number > $min){
+    if($number < $min){
         $min = $number;
     }
 }
 
 echo $min;
-
 
 
 
